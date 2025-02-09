@@ -1,0 +1,23 @@
+# Podfile
+
+# Define the platform and minimum deployment target.
+platform :ios, '15.0'
+
+# This line tells CocoaPods *not* to generate a separate Xcode project
+# for the Pods.  It integrates the Pods directly into your existing
+# workspace.  This is important for your multi-project setup.
+use_frameworks! :linkage => :static
+install! 'cocoapods', :deterministic_uuids => false
+
+workspace 'Mochi.xcodeproj'
+
+# Target-specific dependencies
+target 'Mochi' do
+  # This avoids problems when integrating with multiple Xcode projects.
+  project 'Mochi.xcodeproj'
+
+  # Explicitly list all your dependencies from CocoaPods.
+  pod 'ComScore', '6.12.3'
+  pod 'TimeLaneCombine', '~> 2.0.0'
+  pod 'TimeLaneCore', '~> 2.0.2'
+end
