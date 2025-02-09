@@ -23,7 +23,7 @@ extension PackageDependency {
     var packageName: String {
         switch dependency.kind {
         case let .sourceControl(name: name, location: location, requirement: _):
-            return name ?? location.packageName ?? productName
+            return name ?? location.packageName ?? productName // Use productName as the fallback
         case let .fileSystem(name: name, path: path):
             return name ?? path.packageName ?? productName
         case let .registry(id: id, requirement: _):
@@ -36,7 +36,7 @@ extension PackageDependency {
     var targetDepenency: _PackageDescription_TargetDependency {
         switch dependency.kind {
         case let .sourceControl(name: name, location: location, requirement: _):
-            let packageName = name ?? location.packageName
+            let packageName = name ?? location.packageName ?? productName  // Use productName
             return .product(name: productName, package: packageName)
 
         default:
