@@ -17,7 +17,5 @@ target 'Mochi' do
   project 'Mochi.xcodeproj'
 
   # Explicitly list all your dependencies from CocoaPods.
-  pod 'ComScore', '6.12.3'
-  pod 'TimeLaneCombine', '~> 2.0.0'
-  pod 'TimeLaneCore', '~> 2.0.2'
+  pod 'ComScore', '6.12.3'  # From Package.resolved, *and* it's a CocoaPod.
 end
