@@ -8,6 +8,6 @@
 
 struct Semver: PackageDependency {
     var dependency: Package.Dependency {
-        .package(url: "https://github.com/kutchie-pelaez/Semver.git", exact: "1.0.0")
+        .package(url: "https://github.com/sersoft-gmbh/semver", from: "5.0.0"),
     }
 }
