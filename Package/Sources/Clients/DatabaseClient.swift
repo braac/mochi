@@ -14,6 +14,7 @@ struct DatabaseClient: _Client {
         Semver()
         Tagged()
         CoreDB()
+        CoreDBMacros() // Add this line.
     }
 
     var resources: [Resource] {
