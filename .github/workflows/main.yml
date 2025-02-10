@@ -32,12 +32,30 @@ jobs:
       with:
         xcode-version: '16.2.0'
 
-    - name: Generate Package.swift  # Make SURE this runs BEFORE xcodebuild
+    # --- CRITICAL CHANGES ---
+    - name: Generate Package.swift
       run: ./package.sh
+      working-directory: ${{ github.workspace }}  # Ensure correct directory
+
+    - name: Print Package.swift  # Verify generated file
+      run: cat Package.swift
       working-directory: ${{ github.workspace }}
 
-    - name: Print Package.swift    # ADD THIS TO SEE THE OUTPUT
-      run: cat Package.swift
+    # --- Temporarily disable caching ---
+    # - uses: actions/cache@v3
+    #   with:
+    #     path: ...
+    #     key: ...
+    - name: Clean CocoaPods cache
+      run: |
+          rm -rf ~/.cocoapods
+          rm -rf Pods
+      working-directory: ${{ github.workspace }}
+
+    - name: Remove DerivedData and SPM Cache
+      run: |
+        rm -rf ~/Library/Developer/Xcode/DerivedData
+        rm -rf ~/Library/Caches/org.swift.swiftpm
       working-directory: ${{ github.workspace }}
 
     - name: Build and Export IPA
